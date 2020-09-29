@@ -25,7 +25,7 @@ def convertCsvToJson(fileFrom, fileTo, num_lim = None):
     for row in reader:
       jsonSampleCopy = deepcopy(jsonSample) # Make copy of Json Instance
       for j in range(length):
-        jsonSampleCopy[row1[j]] = row[j] 
+        jsonSampleCopy[row1[j]] = row[j].strip() 
       print(jsonSampleCopy,end='\n') ##For Testing and see input in colab uncomment
       arr.append(jsonSampleCopy)
       if(num_lim != None):
@@ -33,7 +33,7 @@ def convertCsvToJson(fileFrom, fileTo, num_lim = None):
           break
 
     with open(fileTo,'w+') as json_file:
-        json.dump(arr,json_file)
+        json.dump(arr,json_file,ensure_ascii= False)
     json_file.close()
   file.close()
 
